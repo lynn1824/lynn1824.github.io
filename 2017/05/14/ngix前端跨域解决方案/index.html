@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>nginx前端跨域解决方案 | LYNN-个人博客-</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="没别的,就是帅!">
+  <meta name="description" content="@(前端跨域)[nginx|web|跨域]随着时间的发展，前端越来越趋向于工程化，配置化，不仅仅只是一个js库引用的开发模式了。跨域一直是前端与后台交互一个无法避免的问题，前端常见的跨域一般有：跨域方案  jsonp：一款最常用的跨域解决方案，它利用了javascript标签可跨域的特性从而实现前后端跨域问题，后端通过返回一段包含前端回调javascript并包含参数返回数据从而实现跨域的目的；缺">
 <meta name="keywords" content="nginx,跨域">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx前端跨域解决方案">
 <meta property="og:url" content="http://yoursite.com/2017/05/14/ngix前端跨域解决方案/index.html">
 <meta property="og:site_name" content="LYNN-个人博客-">
-<meta property="og:description" content="没别的,就是帅!">
-<meta property="og:updated_time" content="2017-05-14T09:18:45.000Z">
+<meta property="og:description" content="@(前端跨域)[nginx|web|跨域]随着时间的发展，前端越来越趋向于工程化，配置化，不仅仅只是一个js库引用的开发模式了。跨域一直是前端与后台交互一个无法避免的问题，前端常见的跨域一般有：跨域方案  jsonp：一款最常用的跨域解决方案，它利用了javascript标签可跨域的特性从而实现前后端跨域问题，后端通过返回一段包含前端回调javascript并包含参数返回数据从而实现跨域的目的；缺">
+<meta property="og:updated_time" content="2017-05-14T11:06:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx前端跨域解决方案">
-<meta name="twitter:description" content="没别的,就是帅!">
+<meta name="twitter:description" content="@(前端跨域)[nginx|web|跨域]随着时间的发展，前端越来越趋向于工程化，配置化，不仅仅只是一个js库引用的开发模式了。跨域一直是前端与后台交互一个无法避免的问题，前端常见的跨域一般有：跨域方案  jsonp：一款最常用的跨域解决方案，它利用了javascript标签可跨域的特性从而实现前后端跨域问题，后端通过返回一段包含前端回调javascript并包含参数返回数据从而实现跨域的目的；缺">
   
     <link rel="alternative" href="/atom.xml" title="LYNN-个人博客-" type="application/atom+xml">
   
@@ -178,7 +178,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>@(前端跨域)[nginx|web|跨域]<br>随着时间的发展，前端越来越趋向于工程化，配置化，不仅仅只是一个js库引用的开发模式了。<br>跨域一直是前端与后台交互一个无法避免的问题，前端常见的跨域一般有：<br><br><br><strong>跨域方案</strong></p>
+<ul>
+<li><strong>jsonp</strong>：一款最常用的跨域解决方案，它利用了javascript标签可跨域的特性从而实现前后端跨域问题，后端通过返回一段包含前端回调javascript并包含参数返回数据从而实现跨域的目的；<br>缺点是只支持GET请求，数据大小受到限制；</li>
+<li><strong>XHR2</strong>：XHR2其实是浏览器XmlHttpRequest对象的一个升级，它通过后端设置响应头<code>Access-Control-Allow-Origin``Access-Control-Allow-Methods</code>属性从而达到跨域的目的；</li>
+<li><strong>服务器代理</strong>：其实是我们通过自己建立与前端侧同源的方式，直接访问我们无跨域的服务端，然后由我们建立的的服务端拉取别的数据进行返回从而达到跨域的目的；</li>
+<li><strong>nginx反向代理</strong>：个人认为，所谓的反向代理与正向代理没有啥区别，最大的区别其实是正向代理前端知道访问的服务器是代理，而反向代理是前端不知道我访问的是代理，而是服务器；</li>
+</ul>
+<p>今天主要是针对<code>nginx反向代理</code>方案进行一个详细的输出，有问题欢迎指正。</p>
+<p>配置好<code>nginx</code>，在<code>nginx</code>安装目录文件夹中(mac安装在/usr/local/etc/nginx文件夹下)找到nginx.conf文件，用vim nginx.conf打开，中间配置段如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       8090;  // 监控8090端口</div><div class="line">    server_name  localhost;</div><div class="line">    </div><div class="line">    #charset koi8-r;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">	### 目录指向工程文件夹</div><div class="line">    location / &#123;</div><div class="line">        root /mac/yvb/test;</div><div class="line">        index index.html index.htm;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	### 重点看这里，</div><div class="line">	### 描述： 所有包含以/dafymall_admin目录结构指向http://10.8.15.65:40000</div><div class="line">	### 很简单吧！</div><div class="line">    location /dafymall_admin &#123;</div><div class="line">        proxy_pass   http://10.8.15.65:40000;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    #error_page  404              /404.html;</div><div class="line"></div><div class="line">    # redirect server error pages to the static page /50x.html</div><div class="line">    #</div><div class="line">    error_page   500 502 503 504  /50x.html;</div><div class="line">    location = /50x.html &#123;</div><div class="line">        root   html;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当访问<a href="http://localhost:8989/index.html等不包含`dafymall_admin`的路径时访问的是你指向的`/mac/yvb/test`文件夹中指向的路径，当包含时将访问`http://10.8.15.65:40000`服务器返回的数据，从而实现跨域访问；" target="_blank" rel="external">http://localhost:8989/index.html等不包含`dafymall_admin`的路径时访问的是你指向的`/mac/yvb/test`文件夹中指向的路径，当包含时将访问`http://10.8.15.65:40000`服务器返回的数据，从而实现跨域访问；</a></p>
+
       
 
       
@@ -407,19 +417,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">励志</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">励志</a>
               </li>
             
             <div class="clearfix"></div>
