@@ -180,6 +180,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-如何降低全局变量污染" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/27/如何降低全局变量污染/">如何降低全局变量污染</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/27/如何降低全局变量污染/" class="archive-article-date">
+  	<time datetime="2017-05-27T06:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>变量命名空间污染</strong>是javascript当中一种比较糟糕的特性,在对 JavaScript 的创造者Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时<br>间思考一些东西的情况下导致的结果。</p>
+<p></p><p>作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到<br>最低。以下几种方式可以相对降低全局变量带来的命名污染。</p><p></p>
+<ul>
+<li><p><strong>使用命名空间</strong><br>适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;<br>可以使用对象字面量:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nameSpace = &#123;</div><div class="line">    <span class="attr">a</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(name);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">b</span>: <span class="function"><span class="keyword">function</span>(<span class="params">age</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(age);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>动态创建命名空间</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $ = &#123;&#125;;</div><div class="line">$.space = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> parts = name.split(<span class="string">'.'</span>);</div><div class="line">    <span class="keyword">var</span> current = $;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> parts) &#123;</div><div class="line">        <span class="keyword">if</span>(!current[parts[i]]) &#123;</div><div class="line">            current[parts[i]] = &#123;&#125;;</div><div class="line">        &#125;</div><div class="line">        current = current[parts[i]];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$.space(<span class="string">'event'</span>);</div><div class="line">$.space(<span class="string">'dom.style'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 等价于</span></div><div class="line"><span class="keyword">var</span> $ = &#123;</div><div class="line">    <span class="attr">event</span>: &#123;&#125;,</div><div class="line">    <span class="attr">dom</span>: &#123;</div><div class="line">        <span class="attr">style</span>: &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用闭包封装私有变量</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> user = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> _name = <span class="string">'jason'</span>,</div><div class="line">        _age = <span class="number">29</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">getUserInfo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> _name + <span class="string">'-'</span> + _age;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我们用下划线来约定私有变量<strong>name 和</strong>age，它们被封装在闭包产生的作用域中，外部是<br>访问不到这两个变量的，这就避免了对全局的命令污染。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/解决方案/" class="article-tag-list-link color5">解决方案</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/27/如何降低全局变量污染/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-javascript数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
