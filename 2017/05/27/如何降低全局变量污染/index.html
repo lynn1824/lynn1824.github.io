@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/27/如何降低全局变量污染/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
 <meta property="og:description" content="变量命名空间污染是javascript当中一种比较糟糕的特性,在对 JavaScript 的创造者Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时间思考一些东西的情况下导致的结果。 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适">
-<meta property="og:updated_time" content="2017-05-27T06:38:28.000Z">
+<meta property="og:updated_time" content="2017-05-27T06:43:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何降低全局变量污染">
 <meta name="twitter:description" content="变量命名空间污染是javascript当中一种比较糟糕的特性,在对 JavaScript 的创造者Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时间思考一些东西的情况下导致的结果。 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适">
@@ -201,7 +201,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>变量命名空间污染</strong>是javascript当中一种比较糟糕的特性,在对 JavaScript 的创造者Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时<br>间思考一些东西的情况下导致的结果。</p>
-<p></p><p>作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到<br>最低。以下几种方式可以相对降低全局变量带来的命名污染。</p><p></p>
+<p></p><p>作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。</p><p></p>
 <ul>
 <li><p><strong>使用命名空间</strong><br>适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;<br>可以使用对象字面量:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nameSpace = &#123;</div><div class="line">    <span class="attr">a</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(name);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">b</span>: <span class="function"><span class="keyword">function</span>(<span class="params">age</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(age);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -213,7 +213,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> user = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> _name = <span class="string">'jason'</span>,</div><div class="line">        _age = <span class="number">29</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">getUserInfo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> _name + <span class="string">'-'</span> + _age;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>我们用下划线来约定私有变量<strong>name 和</strong>age，它们被封装在闭包产生的作用域中，外部是<br>访问不到这两个变量的，这就避免了对全局的命令污染。</p>
+<p>我们用下划线来约定私有变量<strong>name 和</strong>age，它们被封装在闭包产生的作用域中，外部是访问不到这两个变量的，这就避免了对全局的命令污染。</p>
 
       
 
@@ -474,15 +474,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodeJS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">跨域</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodeJS</a>
               </li>
              
               <li class="article-tag-list-item">
