@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>mock.js简单介绍 | CEM_个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: Mock.js使用小结date: 2017-02-23 10:34:34categories: JavaScripttags: mockjs,javascriptdescription: 本文首发于 http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文">
+  <meta name="description" content="介绍mockjs是一个模拟后台接口的JS库，它的原理是重写了XMLHttpRequest，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。 官网：http://mockjs.com/文档：https://github.com/nuysoft/Mock/wiki 基本语法Mock.mock(template)根据数据模板直接返回数据，以下代码可访问 http://mockjs.com/">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mock.js简单介绍">
 <meta property="og:url" content="http://yoursite.com/2017/06/23/mockjs使用/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
-<meta property="og:description" content="title: Mock.js使用小结date: 2017-02-23 10:34:34categories: JavaScripttags: mockjs,javascriptdescription: 本文首发于 http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文">
-<meta property="og:updated_time" content="2017-09-04T23:32:01.000Z">
+<meta property="og:description" content="介绍mockjs是一个模拟后台接口的JS库，它的原理是重写了XMLHttpRequest，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。 官网：http://mockjs.com/文档：https://github.com/nuysoft/Mock/wiki 基本语法Mock.mock(template)根据数据模板直接返回数据，以下代码可访问 http://mockjs.com/">
+<meta property="og:updated_time" content="2017-09-04T23:33:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mock.js简单介绍">
-<meta name="twitter:description" content="title: Mock.js使用小结date: 2017-02-23 10:34:34categories: JavaScripttags: mockjs,javascriptdescription: 本文首发于 http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文">
+<meta name="twitter:description" content="介绍mockjs是一个模拟后台接口的JS库，它的原理是重写了XMLHttpRequest，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。 官网：http://mockjs.com/文档：https://github.com/nuysoft/Mock/wiki 基本语法Mock.mock(template)根据数据模板直接返回数据，以下代码可访问 http://mockjs.com/">
   
     <link rel="alternative" href="/atom.xml" title="CEM_个人博客" type="application/atom+xml">
   
@@ -200,9 +200,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: Mock.js使用小结<br>date: 2017-02-23 10:34:34<br>categories: JavaScript<br>tags: mockjs,javascript<br>description: 本文首发于 <a href="http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文链接，谢谢！" target="_blank" rel="external">http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文链接，谢谢！</a></p>
-<h2 id="author-liuxianan"><a href="#author-liuxianan" class="headerlink" title="author: liuxianan"></a>author: liuxianan</h2><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>mockjs是一个模拟后台接口的JS库，它的原理是重写了<code>XMLHttpRequest</code>，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。</p>
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>mockjs是一个模拟后台接口的JS库，它的原理是重写了<code>XMLHttpRequest</code>，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。</p>
 <p>官网：<a href="http://mockjs.com/" target="_blank" rel="external">http://mockjs.com/</a><br>文档：<a href="https://github.com/nuysoft/Mock/wiki" target="_blank" rel="external">https://github.com/nuysoft/Mock/wiki</a></p>
 <h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="Mock-mock-template"><a href="#Mock-mock-template" class="headerlink" title="Mock.mock(template)"></a>Mock.mock(template)</h2><p>根据数据模板直接返回数据，以下代码可访问 <a href="http://mockjs.com/examples.html" target="_blank" rel="external">http://mockjs.com/examples.html</a> 然后打开控制台调试：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="string">'@integer(60, 100)'</span>); <span class="comment">// 随机生成60-100的整数</span></div><div class="line">Mock.mock(<span class="string">'@cname()'</span>); <span class="comment">// 随机生成一个中文名，如：叶秀英</span></div><div class="line"><span class="comment">// 还可以接收一个function自定义返回内容</span></div><div class="line">Mock.mock(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">10</span>);</div><div class="line">&#125;)；</div></pre></td></tr></table></figure>
