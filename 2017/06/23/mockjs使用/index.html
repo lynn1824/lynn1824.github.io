@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | CEM_个人博客</title>
+  <title>mock.js简单介绍 | CEM_个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="没别的,就是帅!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CEM_个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="title: Mock.js使用小结date: 2017-02-23 10:34:34categories: JavaScripttags: mockjs,javascriptdescription: 本文首发于 http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mock.js简单介绍">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/mockjs使用/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
-<meta property="og:description" content="没别的,就是帅!">
+<meta property="og:description" content="title: Mock.js使用小结date: 2017-02-23 10:34:34categories: JavaScripttags: mockjs,javascriptdescription: 本文首发于 http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文">
+<meta property="og:updated_time" content="2017-09-04T23:32:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CEM_个人博客">
-<meta name="twitter:description" content="没别的,就是帅!">
+<meta name="twitter:title" content="mock.js简单介绍">
+<meta name="twitter:description" content="title: Mock.js使用小结date: 2017-02-23 10:34:34categories: JavaScripttags: mockjs,javascriptdescription: 本文首发于 http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文">
   
     <link rel="alternative" href="/atom.xml" title="CEM_个人博客" type="application/atom+xml">
   
@@ -178,36 +180,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-mockjs使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      mock.js简单介绍
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/23/mockjs使用/" class="archive-article-date">
+
+        
+        <a href="/2017/06/23/mockjs使用/" class="archive-article-date">
   	<time datetime="2017-06-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-23</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/23/mockjs使用/">mock.js简单介绍</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: Mock.js使用小结<br>date: 2017-02-23 10:34:34<br>categories: JavaScript<br>tags: mockjs,javascript<br>description: 本文首发于 <a href="http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文链接，谢谢！" target="_blank" rel="external">http://liuxianan.com，原文地址：http://blog.liuxianan.com/mockjs.html，转载请注明署名“liuxianan”并在显眼位置保留原文链接，谢谢！</a></p>
+<h2 id="author-liuxianan"><a href="#author-liuxianan" class="headerlink" title="author: liuxianan"></a>author: liuxianan</h2><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>mockjs是一个模拟后台接口的JS库，它的原理是重写了<code>XMLHttpRequest</code>，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。</p>
+<p>官网：<a href="http://mockjs.com/" target="_blank" rel="external">http://mockjs.com/</a><br>文档：<a href="https://github.com/nuysoft/Mock/wiki" target="_blank" rel="external">https://github.com/nuysoft/Mock/wiki</a></p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="Mock-mock-template"><a href="#Mock-mock-template" class="headerlink" title="Mock.mock(template)"></a>Mock.mock(template)</h2><p>根据数据模板直接返回数据，以下代码可访问 <a href="http://mockjs.com/examples.html" target="_blank" rel="external">http://mockjs.com/examples.html</a> 然后打开控制台调试：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="string">'@integer(60, 100)'</span>); <span class="comment">// 随机生成60-100的整数</span></div><div class="line">Mock.mock(<span class="string">'@cname()'</span>); <span class="comment">// 随机生成一个中文名，如：叶秀英</span></div><div class="line"><span class="comment">// 还可以接收一个function自定义返回内容</span></div><div class="line">Mock.mock(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">10</span>);</div><div class="line">&#125;)；</div></pre></td></tr></table></figure>
+<h2 id="Mock-mock-rurl-template"><a href="#Mock-mock-rurl-template" class="headerlink" title="Mock.mock(rurl, template)"></a>Mock.mock(rurl, template)</h2><p>Mock.mock(rurl, template)，其中，rurl可以是一个正则，也可以是字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="regexp">/api\/get_name/</span>, &#123;</div><div class="line">    <span class="attr">retcode</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">retmsg</span>: <span class="string">'ok'</span>,</div><div class="line">    <span class="attr">result_rows</span>: []</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Mock-mock-rurl-function-options"><a href="#Mock-mock-rurl-function-options" class="headerlink" title="Mock.mock(rurl, function(options))"></a>Mock.mock(rurl, function(options))</h2><p>有时候需要根据不同的请求参数来返回不同的内容，这时候function就派上用场了，但是需要注意参数从哪里获取要根据实际情况来：</p>
+<ul>
+<li>如果是GET请求，那么要从<code>options.url</code>里面拿，然后自己解析出来；</li>
+<li>如果是普通的POST请求，那么要从<code>options.body</code>里面拿，然后自己解析类似<code>a=1&amp;b=2</code>这种格式；</li>
+<li>如果参数是JSON格式并且是POST，那么要从<code>options.body</code>里面拿，然后<code>JSON.parse()</code>再获取；</li>
+<li>等等……</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="regexp">/api\/get_name/</span>, <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">console</span>.log(options.body);</div><div class="line">	<span class="keyword">return</span> &#123;<span class="attr">code</span>: <span class="number">0</span>&#125;;</div><div class="line">&#125;);</div><div class="line">$.post(<span class="string">'http://www.test.com/api/get_name/'</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">resp</span>)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">console</span>.log(resp);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -219,7 +265,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -232,278 +278,100 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/23/mockjs使用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/27/如何降低全局变量污染/" class="archive-article-date">
-  	<time datetime="2017-05-27T06:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/27/如何降低全局变量污染/">如何降低全局变量污染</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/解决方案/" class="article-tag-list-link color5">解决方案</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/14/javascript数据类型/" class="archive-article-date">
-  	<time datetime="2017-05-14T14:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/14/javascript数据类型/">javascript数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/14/ngix前端跨域解决方案/" class="archive-article-date">
-  	<time datetime="2017-05-14T09:15:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/14/ngix前端跨域解决方案/">nginx前端跨域解决方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/解决方案/" class="article-tag-list-link color5">解决方案</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/14/nodeJS学习(一)/" class="archive-article-date">
-  	<time datetime="2017-05-14T08:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/14/nodeJS学习(一)/">NodeJS学习(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">nodeJS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/nodeJS/" class="article-tag-list-link color2">nodeJS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/14/起笔/" class="archive-article-date">
-  	<time datetime="2017-05-14T08:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/14/起笔/">铁杵磨针? 傻吧!不知道去买根针哦!</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">励志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感悟</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔/" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/05/27/如何降低全局变量污染/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何降低全局变量污染</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
   
 
-    
+  
+    <section id="comments">
+        <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+        <script>
+          var cloudTieConfig = {
+            url: document.location.href,
+            sourceId: "",
+            productKey: "14f5ab11ddea447b822e1599763e46d7",
+            target: "cloud-tie-wrapper"
+          };
+        </script>
+        <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </section>
+  
+
+  
+
+  
 
 
           </div>
@@ -534,8 +402,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
