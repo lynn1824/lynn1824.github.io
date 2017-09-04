@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>如何降低全局变量污染 | CEM_个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="变量命名空间污染是javascript当中一种比较糟糕的特性,在对 JavaScript 的创造者Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时间思考一些东西的情况下导致的结果。 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适">
+  <meta name="description" content="变量命名空间污染是javascript当中一种比较糟糕的特性, 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;可以使用对象字面量: 12345678var nameSpace = &amp;#123;    a:">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何降低全局变量污染">
 <meta property="og:url" content="http://yoursite.com/2017/05/27/如何降低全局变量污染/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
-<meta property="og:description" content="变量命名空间污染是javascript当中一种比较糟糕的特性,在对 JavaScript 的创造者Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时间思考一些东西的情况下导致的结果。 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适">
-<meta property="og:updated_time" content="2017-05-27T06:43:36.000Z">
+<meta property="og:description" content="变量命名空间污染是javascript当中一种比较糟糕的特性, 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;可以使用对象字面量: 12345678var nameSpace = &amp;#123;    a:">
+<meta property="og:updated_time" content="2017-09-04T16:28:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何降低全局变量污染">
-<meta name="twitter:description" content="变量命名空间污染是javascript当中一种比较糟糕的特性,在对 JavaScript 的创造者Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时间思考一些东西的情况下导致的结果。 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适">
+<meta name="twitter:description" content="变量命名空间污染是javascript当中一种比较糟糕的特性, 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;可以使用对象字面量: 12345678var nameSpace = &amp;#123;    a:">
   
     <link rel="alternative" href="/atom.xml" title="CEM_个人博客" type="application/atom+xml">
   
@@ -200,7 +200,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>变量命名空间污染</strong>是javascript当中一种比较糟糕的特性,在对 JavaScript 的创造者Brendan Eich 的访谈中， Brendan Eich 本人也承认全局变量是设计上的失误，是在没有足够的时<br>间思考一些东西的情况下导致的结果。</p>
+        <p><strong>变量命名空间污染</strong>是javascript当中一种比较糟糕的特性,</p>
 <p></p><p>作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。</p><p></p>
 <ul>
 <li><p><strong>使用命名空间</strong><br>适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;<br>可以使用对象字面量:</p>
