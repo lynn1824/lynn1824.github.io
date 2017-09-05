@@ -784,7 +784,6 @@
 <p>如果服务器资源没有发生变化，则自动返回Http 304(Not Change)的这样一个状态码，内容为空，这样就节省了传输的数据量。当服务器资源发生改变或者重启服务器时，则会重新发出资源，返回与第一次类似，状态为200，带资源返回数据。客户端也能得到一个最新的数据资源。</p>
 <p>ETag/If-None-Match<br>http协议中ETag被称为“被请求变量的实体值”，其实就是个标记，类似于UID。服务器单独负责解析，并在http响应头中将其传送回客户端，以下是服务端返回的ETag<br>ETag: “d41d8cd98f00b204e9800998ecf8427e”<br>客户端查询更新后的格式是：<br>If-None-Match: W/“d41d8cd98f00b204e9800998ecf8427e”<br>如果ETag没有发生改变，则返回状态304，内容为空。这也和Last-Modified一样。</p>
 <p>原理看起来差不多，一般在浏览器中会同时使用。</p>
-<p>Transfer-Encoding: chunked 表示输出的内容长度不能确定，普通的静态页面、图片之类的基本上都用不到这个。<br>但动态页面就有可能会用到，但我也注意到大部分asp,PHP,asp.NET动态页面输出的时候大部分还是使用Content-Length，没有使用Transfer-Encoding: chunked。</p>
 
       
 
