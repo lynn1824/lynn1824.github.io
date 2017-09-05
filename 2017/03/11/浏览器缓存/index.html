@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>如何降低全局变量污染 | CEM_个人博客</title>
+  <title>http协议 Last-Modified/Etag/Expires/Cache-Control理解 | CEM_个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="变量命名空间污染是javascript当中一种比较糟糕的特性, 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;可以使用对象字面量: 12345678var nameSpace = &amp;#123;    a:">
-<meta name="keywords" content="javascript">
+  <meta name="description" content="什么是浏览器缓存？ 浏览器缓存，又称http缓存。是指：当我们输入一个网址第一次访问某个资源的时候（一张图片、一个文件包），客户端存储器会在前端缓存一个副本，以便下次再次访问的时候不需要从服务器再次返回资源。其作用是：提升页面渲染速度，减少服务器压力。缩短了访问时间，显著提高网站性能。 Expires:expires:Thu, 10 Dec 2016 23:21:59 GMT这里是告诉客户端浏览器">
+<meta name="keywords" content="javascript,http协议">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何降低全局变量污染">
-<meta property="og:url" content="http://yoursite.com/2017/05/27/如何降低全局变量污染/index.html">
+<meta property="og:title" content="http协议 Last-Modified&#x2F;Etag&#x2F;Expires&#x2F;Cache-Control理解">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/浏览器缓存/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
-<meta property="og:description" content="变量命名空间污染是javascript当中一种比较糟糕的特性, 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;可以使用对象字面量: 12345678var nameSpace = &amp;#123;    a:">
-<meta property="og:updated_time" content="2017-09-04T16:28:08.000Z">
+<meta property="og:description" content="什么是浏览器缓存？ 浏览器缓存，又称http缓存。是指：当我们输入一个网址第一次访问某个资源的时候（一张图片、一个文件包），客户端存储器会在前端缓存一个副本，以便下次再次访问的时候不需要从服务器再次返回资源。其作用是：提升页面渲染速度，减少服务器压力。缩短了访问时间，显著提高网站性能。 Expires:expires:Thu, 10 Dec 2016 23:21:59 GMT这里是告诉客户端浏览器">
+<meta property="og:updated_time" content="2017-09-05T04:23:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何降低全局变量污染">
-<meta name="twitter:description" content="变量命名空间污染是javascript当中一种比较糟糕的特性, 作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。  使用命名空间适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;可以使用对象字面量: 12345678var nameSpace = &amp;#123;    a:">
+<meta name="twitter:title" content="http协议 Last-Modified&#x2F;Etag&#x2F;Expires&#x2F;Cache-Control理解">
+<meta name="twitter:description" content="什么是浏览器缓存？ 浏览器缓存，又称http缓存。是指：当我们输入一个网址第一次访问某个资源的时候（一张图片、一个文件包），客户端存储器会在前端缓存一个副本，以便下次再次访问的时候不需要从服务器再次返回资源。其作用是：提升页面渲染速度，减少服务器压力。缩短了访问时间，显著提高网站性能。 Expires:expires:Thu, 10 Dec 2016 23:21:59 GMT这里是告诉客户端浏览器">
   
     <link rel="alternative" href="/atom.xml" title="CEM_个人博客" type="application/atom+xml">
   
@@ -180,40 +180,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-如何降低全局变量污染" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-浏览器缓存" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      如何降低全局变量污染
+      http协议 Last-Modified/Etag/Expires/Cache-Control理解
     </h1>
   
 
         
-        <a href="/2017/05/27/如何降低全局变量污染/" class="archive-article-date">
-  	<time datetime="2017-05-27T06:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
+        <a href="/2017/03/11/浏览器缓存/" class="archive-article-date">
+  	<time datetime="2017-03-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>变量命名空间污染</strong>是javascript当中一种比较糟糕的特性,</p>
-<p></p><p>作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。</p><p></p>
-<ul>
-<li><p><strong>使用命名空间</strong><br>适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;<br>可以使用对象字面量:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nameSpace = &#123;</div><div class="line">    <span class="attr">a</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(name);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">b</span>: <span class="function"><span class="keyword">function</span>(<span class="params">age</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(age);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>动态创建命名空间</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $ = &#123;&#125;;</div><div class="line">$.space = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> parts = name.split(<span class="string">'.'</span>);</div><div class="line">    <span class="keyword">var</span> current = $;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> parts) &#123;</div><div class="line">        <span class="keyword">if</span>(!current[parts[i]]) &#123;</div><div class="line">            current[parts[i]] = &#123;&#125;;</div><div class="line">        &#125;</div><div class="line">        current = current[parts[i]];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$.space(<span class="string">'event'</span>);</div><div class="line">$.space(<span class="string">'dom.style'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 等价于</span></div><div class="line"><span class="keyword">var</span> $ = &#123;</div><div class="line">    <span class="attr">event</span>: &#123;&#125;,</div><div class="line">    <span class="attr">dom</span>: &#123;</div><div class="line">        <span class="attr">style</span>: &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>使用闭包封装私有变量</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> user = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> _name = <span class="string">'jason'</span>,</div><div class="line">        _age = <span class="number">29</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">getUserInfo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> _name + <span class="string">'-'</span> + _age;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>我们用下划线来约定私有变量<strong>name 和</strong>age，它们被封装在闭包产生的作用域中，外部是访问不到这两个变量的，这就避免了对全局的命令污染。</p>
+        <p>什么是浏览器缓存？</p>
+<p>浏览器缓存，又称http缓存。是指：当我们输入一个网址第一次访问某个资源的时候（一张图片、一个文件包），客户端存储器会在前端缓存一个副本，以便下次再次访问的时候不需要从服务器再次返回资源。其作用是：提升页面渲染速度，减少服务器压力。缩短了访问时间，显著提高网站性能。</p>
+<p>Expires:<br>expires:Thu, 10 Dec 2016 23:21:59 GMT<br>这里是告诉客户端浏览器，在2016-12-10 23:21:59分之前，这个缓存是有效的，第二次请求，浏览器不会连接服务器，直接从本地缓存中读取，如下图：<br>不过 Expires 有缺点，比如说，服务端和客户端的时间设置可能不同，这就会使缓存的失效可能并不能精确的按服务器的预期进行。</p>
+<p>Cache-Control:<br>cache-control:max-age=3600<br>这是声明的是一个相对的秒数，表示从现在起，3600秒内都是有效的，这样就避免了服务器端与客户端时间不同步的问题，但cache-control暂时只有http1.1版本才支持。1.0没有。所以在大多数情况一般expires与cache-control一般都会带上，保证兼容。如果是http1.1,会优先支持cache-control。</p>
+<p>Last-Modified/If-Modified-Since：<br>当我们请求服务器上的某个资源时，请求成功后，服务器端在响应头中返回状态码为200，同时会带上Last-Modified后面会跟上一个时间，这个时间就是我们服务器上文件的最后修改时间：Last-Modified: Mon, 30 Nov 2016 23:17:59 GMT</p>
+<p>当我们第二次去服务器请求这个资源时，根据http协议的规定，浏览器会向服务器传送If-Modified-Since报头，询问该时间是否是最后修改时间：If-Modified-Since: Mon, 30 Nov 2016 23:17:59 GMT</p>
+<p>如果服务器资源没有发生变化，则自动返回Http 304(Not Change)的这样一个状态码，内容为空，这样就节省了传输的数据量。当服务器资源发生改变或者重启服务器时，则会重新发出资源，返回与第一次类似，状态为200，带资源返回数据。客户端也能得到一个最新的数据资源。</p>
+<p>ETag/If-None-Match<br>http协议中ETag被称为“被请求变量的实体值”，其实就是个标记，类似于UID。服务器单独负责解析，并在http响应头中将其传送回客户端，以下是服务端返回的ETag<br>ETag: “d41d8cd98f00b204e9800998ecf8427e”<br>客户端查询更新后的格式是：<br>If-None-Match: W/“d41d8cd98f00b204e9800998ecf8427e”<br>如果ETag没有发生改变，则返回状态304，内容为空。这也和Last-Modified一样。</p>
+<p>原理看起来差不多，一般在浏览器中会同时使用。</p>
+<p>Transfer-Encoding: chunked 表示输出的内容长度不能确定，普通的静态页面、图片之类的基本上都用不到这个。<br>但动态页面就有可能会用到，但我也注意到大部分asp,PHP,asp.NET动态页面输出的时候大部分还是使用Content-Length，没有使用Transfer-Encoding: chunked。</p>
 
       
 
@@ -259,6 +255,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">http协议</a>
         		</li>
       		
 		</ul>
@@ -325,7 +325,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/27/如何降低全局变量污染/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/11/浏览器缓存/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -339,20 +339,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/06/23/mockjs使用/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/05/14/起笔/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          mock.js简单介绍
+          铁杵磨针? 傻吧!不知道去买根针哦!
         
       </div>
     </a>
   
-  
-    <a href="/2017/05/23/bind与call实现/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">bind与call实现原理</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
