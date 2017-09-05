@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>CEM_个人博客</title>
+  <title>bind与call实现原理 | CEM_个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="没别的,就是帅!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CEM_个人博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="####call与apply都是我们在后续框架常用的两个函数, 今天就让我们一起来看看它的实现原理吧 1234567891011121314// call实现Function.prototype.call2 = function (context) &amp;#123;    var context = context || window;    context.fn = this; // 保存当前调用函">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bind与call实现原理">
+<meta property="og:url" content="http://yoursite.com/2017/05/14/bind与call实现/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
-<meta property="og:description" content="没别的,就是帅!">
+<meta property="og:description" content="####call与apply都是我们在后续框架常用的两个函数, 今天就让我们一起来看看它的实现原理吧 1234567891011121314// call实现Function.prototype.call2 = function (context) &amp;#123;    var context = context || window;    context.fn = this; // 保存当前调用函">
+<meta property="og:updated_time" content="2017-09-05T04:17:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CEM_个人博客">
-<meta name="twitter:description" content="没别的,就是帅!">
+<meta name="twitter:title" content="bind与call实现原理">
+<meta name="twitter:description" content="####call与apply都是我们在后续框架常用的两个函数, 今天就让我们一起来看看它的实现原理吧 1234567891011121314// call实现Function.prototype.call2 = function (context) &amp;#123;    var context = context || window;    context.fn = this; // 保存当前调用函">
   
     <link rel="alternative" href="/atom.xml" title="CEM_个人博客" type="application/atom+xml">
   
@@ -178,514 +180,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-mockjs使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-bind与call实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/mockjs使用/">mock.js简单介绍</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/23/mockjs使用/" class="archive-article-date">
-  	<time datetime="2017-06-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>mockjs是一个模拟后台接口的JS库，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。</p>
-<p>官网：<a href="http://mockjs.com/" target="_blank" rel="external">http://mockjs.com/</a><br>文档：<a href="https://github.com/nuysoft/Mock/wiki" target="_blank" rel="external">https://github.com/nuysoft/Mock/wiki</a></p>
-<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="Mock-mock-template"><a href="#Mock-mock-template" class="headerlink" title="Mock.mock(template)"></a>Mock.mock(template)</h2><p>根据数据模板直接返回数据，以下代码可访问 <a href="http://mockjs.com/examples.html" target="_blank" rel="external">http://mockjs.com/examples.html</a> 然后打开控制台调试：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="string">'@integer(60, 100)'</span>); <span class="comment">// 随机生成60-100的整数</span></div><div class="line">Mock.mock(<span class="string">'@cname()'</span>); <span class="comment">// 随机生成一个中文名，如：叶秀英</span></div><div class="line"><span class="comment">// 还可以接收一个function自定义返回内容</span></div><div class="line">Mock.mock(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">10</span>);</div><div class="line">&#125;)；</div></pre></td></tr></table></figure>
-<h2 id="Mock-mock-rurl-template"><a href="#Mock-mock-rurl-template" class="headerlink" title="Mock.mock(rurl, template)"></a>Mock.mock(rurl, template)</h2><p>Mock.mock(rurl, template)，其中，rurl可以是一个正则，也可以是字符串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="regexp">/api\/get_name/</span>, &#123;</div><div class="line">    <span class="attr">retcode</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">retmsg</span>: <span class="string">'ok'</span>,</div><div class="line">    <span class="attr">result_rows</span>: []</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="Mock-mock-rurl-function-options"><a href="#Mock-mock-rurl-function-options" class="headerlink" title="Mock.mock(rurl, function(options))"></a>Mock.mock(rurl, function(options))</h2><p>有时候需要根据不同的请求参数来返回不同的内容，这时候function就派上用场了，但是需要注意参数从哪里获取要根据实际情况来：</p>
-<ul>
-<li>如果是GET请求，那么要从<code>options.url</code>里面拿，然后自己解析出来；</li>
-<li>如果是普通的POST请求，那么要从<code>options.body</code>里面拿，然后自己解析类似<code>a=1&amp;b=2</code>这种格式；</li>
-<li>如果参数是JSON格式并且是POST，那么要从<code>options.body</code>里面拿，然后<code>JSON.parse()</code>再获取；</li>
-<li>等等……</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="regexp">/api\/get_name/</span>, <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">console</span>.log(options.body);</div><div class="line">	<span class="keyword">return</span> &#123;<span class="attr">code</span>: <span class="number">0</span>&#125;;</div><div class="line">&#125;);</div><div class="line">$.post(<span class="string">'http://www.test.com/api/get_name/'</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">resp</span>)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">console</span>.log(resp);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/23/mockjs使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-如何降低全局变量污染" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/27/如何降低全局变量污染/">如何降低全局变量污染</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/27/如何降低全局变量污染/" class="archive-article-date">
-  	<time datetime="2017-05-27T06:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>变量命名空间污染</strong>是javascript当中一种比较糟糕的特性,</p>
-<p></p><p>作为普通的开发者，我们有必要尽量减少全局变量的使用，即使需要，也要把它的污染降到最低。以下几种方式可以相对降低全局变量带来的命名污染。</p><p></p>
-<ul>
-<li><p><strong>使用命名空间</strong><br>适当使用命名空间,并不会完全杜绝命名空间的污染,只能降低全局变量的数量,从而降低污染的机率;<br>可以使用对象字面量:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nameSpace = &#123;</div><div class="line">    <span class="attr">a</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(name);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">b</span>: <span class="function"><span class="keyword">function</span>(<span class="params">age</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(age);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>动态创建命名空间</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $ = &#123;&#125;;</div><div class="line">$.space = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> parts = name.split(<span class="string">'.'</span>);</div><div class="line">    <span class="keyword">var</span> current = $;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> parts) &#123;</div><div class="line">        <span class="keyword">if</span>(!current[parts[i]]) &#123;</div><div class="line">            current[parts[i]] = &#123;&#125;;</div><div class="line">        &#125;</div><div class="line">        current = current[parts[i]];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$.space(<span class="string">'event'</span>);</div><div class="line">$.space(<span class="string">'dom.style'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 等价于</span></div><div class="line"><span class="keyword">var</span> $ = &#123;</div><div class="line">    <span class="attr">event</span>: &#123;&#125;,</div><div class="line">    <span class="attr">dom</span>: &#123;</div><div class="line">        <span class="attr">style</span>: &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>使用闭包封装私有变量</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> user = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> _name = <span class="string">'jason'</span>,</div><div class="line">        _age = <span class="number">29</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">getUserInfo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> _name + <span class="string">'-'</span> + _age;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>我们用下划线来约定私有变量<strong>name 和</strong>age，它们被封装在闭包产生的作用域中，外部是访问不到这两个变量的，这就避免了对全局的命令污染。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/解决方案/" class="article-tag-list-link color5">解决方案</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/27/如何降低全局变量污染/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-javascript数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/14/javascript数据类型/">javascript数据类型</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/14/javascript数据类型/" class="archive-article-date">
-  	<time datetime="2017-05-14T14:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>javascript 数据类型总共分为基本类型<code>String</code>,<code>Number</code>,<code>Null</code>,<code>Boolean</code>,<code>Undefined</code>和引用类型<code>Object</code>；</p>
-<ul>
-<li><strong>Undefined数据类型：</strong><br>Undefined数据类型总共有一个值，那就是undefind。当我声明一个变量却未赋值时，它的值默认为undefind。如：var test_str;<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">test_str == underfined <span class="comment">// true, 未经初始化的值默认就会取得undefined的值。</span></div><div class="line">alert(test_str); <span class="comment">// 打印undefined</span></div><div class="line">alert(test); <span class="comment">// 产生错误，找不到这个值</span></div><div class="line">alert(<span class="keyword">typeof</span> test_str); <span class="comment">// 打印undefined</span></div><div class="line">alert(<span class="keyword">typeof</span> test); <span class="comment">// 打印undefined</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>即便未初始化的变量会被赋予undefined值，但显式地初始化依然是明智的选择。如果能做到这一点，那么当typeof操作符返回“undefined”值时，我们就知道被检测的变量还没有被声明，而不是尚未初始化。</p>
-<ul>
-<li><strong>Null类型：</strong><br>null类型有个特殊的值就是null。从逻辑角度来看，null值表示一个空指针对象，这也是typeof null会返回一个”object”的原因。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> car = <span class="literal">null</span>; </div><div class="line">alert(<span class="keyword">typeof</span> car); <span class="comment">// “object”</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>如果定义一个变量将来是要用来保存一个对象，最好将初始化为null，这样的话，只要检查null值就说明当前对象未指向任何内存引用。</p>
-<ul>
-<li><p><strong>Boolean类型：</strong><br>boolean类型有两个值：true和false。<br><code>注意点:</code>记住转化为false的数据就ok,别的都是true<br>转化为false的数据为: false、“”(空字符串)、0和NaN、null、undefined  (这些都是转化为false).<br>var test; 当前test的默认值为undefined, 所以Boolean(test);// false</p>
-</li>
-<li><p><strong>Number类型：</strong><br>Number数据类型在ECMAScript当中，主要是用来表示整数与浮点数（浮点数在某些语言中也被称为双精度数值）。<br>Infinity(正无穷) -Infinity(负无穷)<br>NaN(Not a Number)非数字的特殊数值，这个数值用于表示本来应该返回一个数值却没有返回数值的情况。在ECMAScript中，任何数除以0都是NaN,这样就不会影响其他代码的运行。任何涉及NaN的操作（0/NaN）都会返回NaN。<br>NaN与任何值都不相等，所以：NaN == NaN；// false<br>isNaN函数的使用：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>); <span class="comment">// true</span></div><div class="line"><span class="built_in">isNaN</span>(<span class="number">10</span>); <span class="comment">// false</span></div><div class="line"><span class="built_in">isNaN</span>(‘<span class="number">10</span>’) <span class="comment">// false</span></div><div class="line"><span class="built_in">isNaN</span>(‘blue’) <span class="comment">// true</span></div><div class="line"><span class="built_in">isNaN</span>(<span class="literal">true</span>) <span class="comment">// false</span></div><div class="line"><span class="built_in">Number</span>(“hello world”); <span class="comment">// NaN</span></div><div class="line"><span class="built_in">Number</span>(“”); <span class="comment">// 0</span></div><div class="line"><span class="built_in">Number</span>(“<span class="number">000011</span>”); <span class="comment">// 11</span></div><div class="line"><span class="built_in">Number</span>(<span class="literal">true</span>); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>由于Number进行数据转化的时候并非很合理，因此在处理整数的时候一般使用parseInt(),处理浮点型数据的时候一般使用parseFloat();<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">parseInt</span>(“<span class="number">134</span>blue”); <span class="comment">// 134</span></div><div class="line"><span class="built_in">parseInt</span>(“”);  <span class="comment">// NaN</span></div><div class="line"><span class="built_in">parseInt</span>(“<span class="number">123</span>”); <span class="comment">// 123</span></div><div class="line"><span class="built_in">parseInt</span>(“blue”); <span class="comment">// NaN</span></div><div class="line"><span class="built_in">parseInt</span>(“<span class="number">0xa</span>”); <span class="comment">// 10 (十六进制转化) 注意点：当以0x开头时，会议16进制进行解析。</span></div><div class="line"><span class="built_in">parseInt</span>(“<span class="number">123</span>”); <span class="comment">// 123</span></div><div class="line"><span class="built_in">parseInt</span>(“<span class="number">070</span>”); <span class="comment">// 56(八进制转化)。注意点：当以0开头时，会以8进制进行解析。</span></div><div class="line"><span class="built_in">parseInt</span>(“<span class="number">0xf</span>”); <span class="comment">// 15(十六进制转化)。注意点：当以0x开头时，会议16进制进行解析。</span></div><div class="line">鉴于上面的点，当需要转化为整形时，最好带上第二个参数。</div><div class="line"><span class="built_in">parseInt</span>(“<span class="number">134</span>bule”, <span class="number">10</span>)以<span class="number">10</span>进制进行转化。</div><div class="line"><span class="built_in">parseFloat</span>（“<span class="number">1314</span>blue”); <span class="comment">// 1314 整形</span></div><div class="line"><span class="built_in">parseFloat</span>(“<span class="number">0xA</span>”); <span class="comment">// 0</span></div><div class="line"><span class="built_in">parseFloat</span>(“<span class="number">13.9</span>”); <span class="comment">// 13.9</span></div><div class="line"><span class="built_in">parseFloat</span>(“<span class="number">01324.5</span>”); <span class="comment">// 1324.5</span></div><div class="line"><span class="built_in">parseFloat</span>(<span class="number">3.125e7</span>); <span class="comment">// 31250000</span></div></pre></td></tr></table></figure></p>
-<p>注意点：parseFloat始终以10进制的方式进行转化。</p>
-<ul>
-<li><strong>String类型：</strong><br>String类型用于ECMAScript字符串类型的展示，字符串可以由单引号与双引号进行表示。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fristName = ‘jason’;</div><div class="line"><span class="keyword">var</span> lastName = “chen”; 同等有效</div><div class="line"><span class="keyword">var</span> test = “sss”;</div><div class="line">test = test + “qqq”; <span class="comment">//这里是新建了一个内存空间，原来sss其实还存在内存当中。这样循环叠加会很耗内存。</span></div><div class="line"><span class="built_in">String</span>.toString(<span class="number">8</span>); 以<span class="number">8</span>进制的方式进行转化。</div><div class="line"><span class="keyword">var</span> value;</div><div class="line">alert(<span class="built_in">String</span>(value)); <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>\n 换行<br>\t 表格符<br>\b 空格<br>\r 回车<br>\ 斜杠<br>\’ 单引号<br>\” 双引号</p>
-<ul>
-<li><strong>Object类型：</strong><br>在ECMAScript中对象其实是一种属性与功能的集合。在java中，是一个类的实例。类是一个人抽象的群里，如人，但单个人就是这个群体的对象。可以跑、跳、身高、体重等等各种属性与功能。这就是对象！<br>js当中创建对象：var obj = new Object({a:1}); obj.a; // 1<br>js和java一样，Object是其它实例的基类。其它实体类都继承了他的方法：<br>Construector：取得当前对象的构造函数。<br>如：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;&#125;;</div><div class="line">a.construector; <span class="comment">// function Object()&#123;&#125;;  构造函数</span></div><div class="line">hasOwnProperty(prototypeName); <span class="comment">// 用于检查属性是否在当前对象中。不会检查原型上的对象。</span></div><div class="line">isPrototypeOf(object):用于检查传入的对象是否是另一个对象的原型。</div><div class="line"><span class="keyword">var</span> SetAdmin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">SetAdmin.prototype.add = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"><span class="keyword">var</span> admin = <span class="keyword">new</span> SetAdmin();</div><div class="line"><span class="keyword">var</span> test = &#123;&#125;;</div><div class="line">SetAdmin.prototype.isPrototypeOf(admin); <span class="comment">// true</span></div><div class="line">SetAdmin.prototype.isPrototypeOf(test); <span class="comment">// false</span></div></pre></td></tr></table></figure></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/14/javascript数据类型/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-ngix前端跨域解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/14/ngix前端跨域解决方案/">nginx前端跨域解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/14/ngix前端跨域解决方案/" class="archive-article-date">
-  	<time datetime="2017-05-14T09:15:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>@(前端跨域)[nginx|web|跨域]<br>随着时间的发展，前端越来越趋向于工程化，配置化，不仅仅只是一个js库引用的开发模式了。<br>跨域一直是前端与后台交互一个无法避免的问题，前端常见的跨域一般有：<br><br><br><strong>跨域方案</strong></p>
-<ul>
-<li><strong>jsonp</strong>：一款最常用的跨域解决方案，它利用了javascript标签可跨域的特性从而实现前后端跨域问题，后端通过返回一段包含前端回调javascript并包含参数返回数据从而实现跨域的目的；<br>缺点是只支持GET请求，数据大小受到限制；</li>
-<li><strong>XHR2</strong>：XHR2其实是浏览器XmlHttpRequest对象的一个升级，它通过后端设置响应头<code>Access-Control-Allow-Origin``Access-Control-Allow-Methods</code>属性从而达到跨域的目的；</li>
-<li><strong>服务器代理</strong>：其实是我们通过自己建立与前端侧同源的方式，直接访问我们无跨域的服务端，然后由我们建立的的服务端拉取别的数据进行返回从而达到跨域的目的；</li>
-<li><strong>nginx反向代理</strong>：个人认为，所谓的反向代理与正向代理没有啥区别，最大的区别其实是正向代理前端知道访问的服务器是代理，而反向代理是前端不知道我访问的是代理，而是服务器；</li>
-</ul>
-<p>今天主要是针对<code>nginx反向代理</code>方案进行一个详细的输出，有问题欢迎指正。</p>
-<p>配置好<code>nginx</code>，在<code>nginx</code>安装目录文件夹中(mac安装在/usr/local/etc/nginx文件夹下)找到nginx.conf文件，用vim nginx.conf打开，中间配置段如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       8090;  // 监控8090端口</div><div class="line">    server_name  localhost;</div><div class="line">    </div><div class="line">    #charset koi8-r;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">	### 目录指向工程文件夹</div><div class="line">    location / &#123;</div><div class="line">        root /mac/yvb/test;</div><div class="line">        index index.html index.htm;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	### 重点看这里，</div><div class="line">	### 描述： 所有包含以/dafymall_admin目录结构指向http://10.8.15.65:40000</div><div class="line">	### 很简单吧！</div><div class="line">    location /dafymall_admin &#123;</div><div class="line">        proxy_pass   http://10.8.15.65:40000;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    #error_page  404              /404.html;</div><div class="line"></div><div class="line">    # redirect server error pages to the static page /50x.html</div><div class="line">    #</div><div class="line">    error_page   500 502 503 504  /50x.html;</div><div class="line">    location = /50x.html &#123;</div><div class="line">        root   html;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>当访问<a href="http://localhost:8989/index.html等不包含`dafymall_admin`的路径时访问的是你指向的`/mac/yvb/test`文件夹中指向的路径，当包含时将访问`http://10.8.15.65:40000`服务器返回的数据，从而实现跨域访问；" target="_blank" rel="external">http://localhost:8989/index.html等不包含`dafymall_admin`的路径时访问的是你指向的`/mac/yvb/test`文件夹中指向的路径，当包含时将访问`http://10.8.15.65:40000`服务器返回的数据，从而实现跨域访问；</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/解决方案/" class="article-tag-list-link color5">解决方案</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/14/ngix前端跨域解决方案/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-nodeJS学习(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/14/nodeJS学习(一)/">NodeJS学习(一)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/14/nodeJS学习(一)/" class="archive-article-date">
-  	<time datetime="2017-05-14T08:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">nodeJS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/nodeJS/" class="article-tag-list-link color2">nodeJS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/14/nodeJS学习(一)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-起笔" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/14/起笔/">铁杵磨针? 傻吧!不知道去买根针哦!</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/14/起笔/" class="archive-article-date">
-  	<time datetime="2017-05-14T08:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Medalists don’t grow on trees…you have to nurture them … with love, with hard work, with dedication;<br>金牌不会长在树上，得努力争取，得下功夫，得有激情。 –《摔跤吧，爸爸》</p>
-<p style="text-indent:2em;"><br>最近对《睡觉吧，爸爸》好评如潮，更是拿到了影评9.8的超高成绩，听说是燃点与泪点并齐的异步励志电影，昨天安奈不住内心的冲动，跑到电影院看完了这一部神作，感触颇深，顿时热血沸腾，有种想征服全世界的冲动，尽管今天早上起来该干嘛干嘛了！<br></p><br><p style="text-indent:2em;"><br>转眼间，毕业已经七年，想想学校时的血气方刚、不畏世俗、甚至是胸怀大志在这不长不短的七年里慢慢的被磨平，回头一看，啥都没有留下，想想感觉这七年在浪费光阴，连点让自己成长痕迹的记录都没有， 七年里，经历了太多的事情，病痛的折磨、至亲的离去、工作的碰壁以及社会现实的冷漠，不多不少，七年了，感觉比前面20年都经历的多得多，并不想去抱怨什么，我知道，经历了这些后，人就不一样了；<br></p><br><p style="text-indent:2em;"><br>一直就想搭建一个属于自己的博客，但总是因这些那些所谓的理由让自己放弃了，前两天一口气搭建了这个属于自己的博客，瞬间感觉有了个网上的“归属感”，是啊，人，有时候不想做一件事时，你有一万种理由可以让自己不去做。所以有时候我们别太听从内心那个惰性的自己，人都有惰性，但适当的时候要与惰性的那个你对着干一场，也就是所谓的“别让自己太舒服”，人在太舒服的环境下就容易丧失斗志。所以，别让自己太舒服。<br><br>最近感觉自己有点飘了，感觉就是“天空飘来五个字，那都不是事”，其实哪有那么不是事，很多时候我们可以骗得了别人，骗的了亲人、骗得了世界、甚至可以自欺欺人，没人管你，你爱干嘛都可以干嘛，你开心就好。或许长大了，父母不会管了，别人也不会管你了，只要不违法，都可活的逍遥自在，对，没有错。如果只有这点追求，确实可以，反正现在的社会也饿不死一个人，赖活着呗，但！正所谓，出来混，都要还的。<br></p><br><p><br>问题来了，哥们，你BB了一晚上了，你到底想说啥？<br><br>其实我就是想说：你不努力，别人不会管你，但总有一天，现实会管你，当你面试时遭到无情拒绝的时候、当你只能看着别人泡着妞、开着豪车只能干过瘾的时候、当结婚后，有家庭后，为了一罐好奶粉而要考虑许久的时候、当看到自己喜欢或者女朋友喜欢的东西而没有底气说出来：买！的时候….你会明白，不努力就是那么低人一等；<br><br>突然想起了《面对巨人》这部电影里的一句经典台词：<br><br>“两个农民都在祈祷上帝下雨，但另一个农民在祈祷的同时把田地做好了耕种的准备，你说哪个更相信上帝会下雨呢？”<br>上帝会下雨，你需要的是准备好你的田地！<br>就像我说的，天上会掉馅饼（机会），但你有能力啃这个馅饼吗？（握住机会）。馅饼其实也只留给有准备的人。<br>加油！让我们为了自己、为了家人、为了梦想！<br></p><br><p><br>为了成为一个优秀码农的梦！！！<br></p></blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">励志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感悟</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔/" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/14/起笔/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-bind与call实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/14/bind与call实现/">bind与call实现原理</a>
+    <h1 class="article-title" itemprop="name">
+      bind与call实现原理
     </h1>
   
 
@@ -704,6 +206,37 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -733,22 +266,102 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/14/bind与call实现/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/14/bind与call实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
+  
+<nav id="article-nav">
+  
+    <a href="/2017/05/14/起笔/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          铁杵磨针? 傻吧!不知道去买根针哦!
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 
 
 
   
+
+  
+    <section id="comments">
+        <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+        <script>
+          var cloudTieConfig = {
+            url: document.location.href,
+            sourceId: "",
+            productKey: "14f5ab11ddea447b822e1599763e46d7",
+            target: "cloud-tie-wrapper"
+          };
+        </script>
+        <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </section>
+  
+
+  
+
   
 
 
@@ -779,8 +392,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
