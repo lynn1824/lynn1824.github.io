@@ -15,7 +15,8 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/11/浏览器缓存/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
 <meta property="og:description" content="什么是浏览器缓存？ 浏览器缓存，又称http缓存。是指：当我们输入一个网址第一次访问某个资源的时候（一张图片、一个文件包），客户端存储器会在前端缓存一个副本，以便下次再次访问的时候不需要从服务器再次返回资源。其作用是：提升页面渲染速度，减少服务器压力。缩短了访问时间，显著提高网站性能。 Expires:expires:Thu, 10 Dec 2016 23:21:59 GMT这里是告诉客户端浏览器">
-<meta property="og:updated_time" content="2017-09-05T06:11:32.000Z">
+<meta property="og:locale" content="zh_cn">
+<meta property="og:updated_time" content="2017-09-05T06:12:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http协议 Last-Modified&#x2F;Etag&#x2F;Expires&#x2F;Cache-Control理解">
 <meta name="twitter:description" content="什么是浏览器缓存？ 浏览器缓存，又称http缓存。是指：当我们输入一个网址第一次访问某个资源的时候（一张图片、一个文件包），客户端存储器会在前端缓存一个副本，以便下次再次访问的时候不需要从服务器再次返回资源。其作用是：提升页面渲染速度，减少服务器压力。缩短了访问时间，显著提高网站性能。 Expires:expires:Thu, 10 Dec 2016 23:21:59 GMT这里是告诉客户端浏览器">
@@ -208,7 +209,6 @@
 <p>当我们第二次去服务器请求这个资源时，根据http协议的规定，浏览器会向服务器传送If-Modified-Since报头，询问该时间是否是最后修改时间：If-Modified-Since: Mon, 30 Nov 2016 23:17:59 GMT</p>
 <p>如果服务器资源没有发生变化，则自动返回Http 304(Not Change)的这样一个状态码，内容为空，这样就节省了传输的数据量。当服务器资源发生改变或者重启服务器时，则会重新发出资源，返回与第一次类似，状态为200，带资源返回数据。客户端也能得到一个最新的数据资源。</p>
 <p>ETag/If-None-Match<br>http协议中ETag被称为“被请求变量的实体值”，其实就是个标记，类似于UID。服务器单独负责解析，并在http响应头中将其传送回客户端，以下是服务端返回的ETag<br>ETag: “d41d8cd98f00b204e9800998ecf8427e”<br>客户端查询更新后的格式是：<br>If-None-Match: W/“d41d8cd98f00b204e9800998ecf8427e”<br>如果ETag没有发生改变，则返回状态304，内容为空。这也和Last-Modified一样。</p>
-<p>原理看起来差不多，一般在浏览器中会同时使用。</p>
 
       
 
@@ -338,7 +338,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/04/09/http协议/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/04/09/测试/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -388,7 +388,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Lynn Chen
+    		&copy; 2018 Lynn Chen
         <span id="busuanzi_container_site_pv">
           本站总访问量<span id="busuanzi_value_site_pv"></span>次
         </span>
@@ -482,6 +482,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -503,10 +507,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">感悟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
               </li>
             
             <div class="clearfix"></div>

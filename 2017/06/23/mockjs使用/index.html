@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/23/mockjs使用/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
 <meta property="og:description" content="介绍mockjs是一个模拟后台接口的JS库，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。 官网：http://mockjs.com/文档：https://github.com/nuysoft/Mock/wiki 基本语法Mock.mock(template)根据数据模板直接返回数据，以下代码可访问 http://mockjs.com/examples.html 然后打开控制台调试">
+<meta property="og:locale" content="zh_cn">
 <meta property="og:updated_time" content="2017-09-04T23:36:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mock.js简单介绍">
@@ -201,11 +202,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>mockjs是一个模拟后台接口的JS库，它可以在接口没出来时非常方便的模拟数据，上线之后不引用它即可。</p>
-<p>官网：<a href="http://mockjs.com/" target="_blank" rel="external">http://mockjs.com/</a><br>文档：<a href="https://github.com/nuysoft/Mock/wiki" target="_blank" rel="external">https://github.com/nuysoft/Mock/wiki</a></p>
-<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="Mock-mock-template"><a href="#Mock-mock-template" class="headerlink" title="Mock.mock(template)"></a>Mock.mock(template)</h2><p>根据数据模板直接返回数据，以下代码可访问 <a href="http://mockjs.com/examples.html" target="_blank" rel="external">http://mockjs.com/examples.html</a> 然后打开控制台调试：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="string">'@integer(60, 100)'</span>); <span class="comment">// 随机生成60-100的整数</span></div><div class="line">Mock.mock(<span class="string">'@cname()'</span>); <span class="comment">// 随机生成一个中文名，如：叶秀英</span></div><div class="line"><span class="comment">// 还可以接收一个function自定义返回内容</span></div><div class="line">Mock.mock(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">10</span>);</div><div class="line">&#125;)；</div></pre></td></tr></table></figure>
+<p>官网：<a href="http://mockjs.com/" target="_blank" rel="noopener">http://mockjs.com/</a><br>文档：<a href="https://github.com/nuysoft/Mock/wiki" target="_blank" rel="noopener">https://github.com/nuysoft/Mock/wiki</a></p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="Mock-mock-template"><a href="#Mock-mock-template" class="headerlink" title="Mock.mock(template)"></a>Mock.mock(template)</h2><p>根据数据模板直接返回数据，以下代码可访问 <a href="http://mockjs.com/examples.html" target="_blank" rel="noopener">http://mockjs.com/examples.html</a> 然后打开控制台调试：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">'@integer(60, 100)'</span>); <span class="comment">// 随机生成60-100的整数</span></span><br><span class="line">Mock.mock(<span class="string">'@cname()'</span>); <span class="comment">// 随机生成一个中文名，如：叶秀英</span></span><br><span class="line"><span class="comment">// 还可以接收一个function自定义返回内容</span></span><br><span class="line">Mock.mock(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">10</span>);</span><br><span class="line">&#125;)；</span><br></pre></td></tr></table></figure>
 <h2 id="Mock-mock-rurl-template"><a href="#Mock-mock-rurl-template" class="headerlink" title="Mock.mock(rurl, template)"></a>Mock.mock(rurl, template)</h2><p>Mock.mock(rurl, template)，其中，rurl可以是一个正则，也可以是字符串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="regexp">/api\/get_name/</span>, &#123;</div><div class="line">    <span class="attr">retcode</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">retmsg</span>: <span class="string">'ok'</span>,</div><div class="line">    <span class="attr">result_rows</span>: []</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="regexp">/api\/get_name/</span>, &#123;</span><br><span class="line">    retcode: <span class="number">0</span>,</span><br><span class="line">    retmsg: <span class="string">'ok'</span>,</span><br><span class="line">    result_rows: []</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h2 id="Mock-mock-rurl-function-options"><a href="#Mock-mock-rurl-function-options" class="headerlink" title="Mock.mock(rurl, function(options))"></a>Mock.mock(rurl, function(options))</h2><p>有时候需要根据不同的请求参数来返回不同的内容，这时候function就派上用场了，但是需要注意参数从哪里获取要根据实际情况来：</p>
 <ul>
 <li>如果是GET请求，那么要从<code>options.url</code>里面拿，然后自己解析出来；</li>
@@ -213,7 +214,7 @@
 <li>如果参数是JSON格式并且是POST，那么要从<code>options.body</code>里面拿，然后<code>JSON.parse()</code>再获取；</li>
 <li>等等……</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Mock.mock(<span class="regexp">/api\/get_name/</span>, <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">console</span>.log(options.body);</div><div class="line">	<span class="keyword">return</span> &#123;<span class="attr">code</span>: <span class="number">0</span>&#125;;</div><div class="line">&#125;);</div><div class="line">$.post(<span class="string">'http://www.test.com/api/get_name/'</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">resp</span>)</span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">console</span>.log(resp);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="regexp">/api\/get_name/</span>, <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(options.body);</span><br><span class="line">	<span class="keyword">return</span> &#123;<span class="attr">code</span>: <span class="number">0</span>&#125;;</span><br><span class="line">&#125;);</span><br><span class="line">$.post(<span class="string">'http://www.test.com/api/get_name/'</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">resp</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(resp);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
 
       
@@ -379,7 +380,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Lynn Chen
+    		&copy; 2018 Lynn Chen
         <span id="busuanzi_container_site_pv">
           本站总访问量<span id="busuanzi_value_site_pv"></span>次
         </span>
@@ -473,6 +474,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -494,10 +499,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">感悟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
               </li>
             
             <div class="clearfix"></div>

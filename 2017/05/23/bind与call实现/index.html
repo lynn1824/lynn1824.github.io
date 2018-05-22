@@ -15,6 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/23/bind与call实现/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
 <meta property="og:description" content="call与apply都是我们在后续框架常用的两个函数, 今天就让我们一起来看看它的实现原理吧 1234567891011121314// call实现Function.prototype.call2 = function (context) &amp;#123;    var context = context || window;    context.fn = this; // 保存当前调用函数">
+<meta property="og:locale" content="zh_cn">
 <meta property="og:updated_time" content="2017-09-05T04:20:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bind与call实现原理">
@@ -201,8 +202,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>call与apply都是我们在后续框架常用的两个函数, 今天就让我们一起来看看它的实现原理吧</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// call实现</span></div><div class="line"><span class="built_in">Function</span>.prototype.call2 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> context = context || <span class="built_in">window</span>;</div><div class="line">    context.fn = <span class="keyword">this</span>; <span class="comment">// 保存当前调用函数</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> args = [];</div><div class="line">    <span class="keyword">var</span> len = <span class="built_in">arguments</span>.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</div><div class="line">        args.push(<span class="string">'arguments['</span> + i + <span class="string">']'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">'context.fn('</span>+ args +<span class="string">')'</span>);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bind实现</span></div><div class="line"><span class="built_in">Function</span>.prototype.bind2 = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">    <span class="comment">// 获取bind2函数后面的后一个参数</span></div><div class="line">    <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> bindArgs = [].slice.call(<span class="built_in">arguments</span>);</div><div class="line">        self.apply(context, args.concat(bindArgs));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// call实现</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.call2 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = context || <span class="built_in">window</span>;</span><br><span class="line">    context.fn = <span class="keyword">this</span>; <span class="comment">// 保存当前调用函数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> args = [];</span><br><span class="line">    <span class="keyword">var</span> len = <span class="built_in">arguments</span>.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">        args.push(<span class="string">'arguments['</span> + i + <span class="string">']'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">'context.fn('</span>+ args +<span class="string">')'</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bind实现</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.bind2 = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="comment">// 获取bind2函数后面的后一个参数</span></span><br><span class="line">    <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bindArgs = [].slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">        self.apply(context, args.concat(bindArgs));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -377,7 +378,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Lynn Chen
+    		&copy; 2018 Lynn Chen
         <span id="busuanzi_container_site_pv">
           本站总访问量<span id="busuanzi_value_site_pv"></span>次
         </span>
@@ -471,6 +472,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -492,10 +497,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">感悟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">http协议</a>
               </li>
             
             <div class="clearfix"></div>
