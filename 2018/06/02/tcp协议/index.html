@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: 随笔 | CEM_个人博客</title>
+  <title>tcp存在的意义 | CEM_个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="没别的,就是帅!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CEM_个人博客">
-<meta property="og:url" content="http://yoursite.com/categories/随笔/index.html">
+  <meta name="description" content="tcp/ip协议  [ ] 非常熟悉的一个词语，相对于前端来说，可能我们对它的了解仅仅至于http协议是基于tcp/ip协议进行数据传输的，而对它到底做了什么，有何特性却只有一层朦胧的概念，了解的却很抽象；任何一个东西的存在，个人觉得都应该从它为什么存在（作用或者意义）以及它是如何实现（原理）来挖掘它内在的性质与原理；今天主要谈谈为什么要有TCP这一层，它到底为我们解决了什么？tcp(传输控制协议">
+<meta name="keywords" content="tcp,协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tcp存在的意义">
+<meta property="og:url" content="http://yoursite.com/2018/06/02/tcp协议/index.html">
 <meta property="og:site_name" content="CEM_个人博客">
-<meta property="og:description" content="没别的,就是帅!">
+<meta property="og:description" content="tcp/ip协议  [ ] 非常熟悉的一个词语，相对于前端来说，可能我们对它的了解仅仅至于http协议是基于tcp/ip协议进行数据传输的，而对它到底做了什么，有何特性却只有一层朦胧的概念，了解的却很抽象；任何一个东西的存在，个人觉得都应该从它为什么存在（作用或者意义）以及它是如何实现（原理）来挖掘它内在的性质与原理；今天主要谈谈为什么要有TCP这一层，它到底为我们解决了什么？tcp(传输控制协议">
 <meta property="og:locale" content="zh_cn">
+<meta property="og:updated_time" content="2018-06-02T06:25:11.760Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CEM_个人博客">
-<meta name="twitter:description" content="没别的,就是帅!">
+<meta name="twitter:title" content="tcp存在的意义">
+<meta name="twitter:description" content="tcp/ip协议  [ ] 非常熟悉的一个词语，相对于前端来说，可能我们对它的了解仅仅至于http协议是基于tcp/ip协议进行数据传输的，而对它到底做了什么，有何特性却只有一层朦胧的概念，了解的却很抽象；任何一个东西的存在，个人觉得都应该从它为什么存在（作用或者意义）以及它是如何实现（原理）来挖掘它内在的性质与原理；今天主要谈谈为什么要有TCP这一层，它到底为我们解决了什么？tcp(传输控制协议">
   
     <link rel="alternative" href="/atom.xml" title="CEM_个人博客" type="application/atom+xml">
   
@@ -179,79 +181,217 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-tcp协议" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/02/起笔/" class="archive-article-date">
-  	<time datetime="2017-03-02T08:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/02/起笔/">铁杵磨针? 傻吧!不知道去买根针哦!</a>
+    <h1 class="article-title" itemprop="name">
+      tcp存在的意义
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/02/tcp协议/" class="archive-article-date">
+  	<time datetime="2018-06-02T06:15:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="tcp-ip协议"><a href="#tcp-ip协议" class="headerlink" title="tcp/ip协议"></a>tcp/ip协议</h3><hr>
+<ul>
+<li>[ ] 非常熟悉的一个词语，相对于前端来说，可能我们对它的了解仅仅至于http协议是基于tcp/ip协议进行数据传输的，而对它到底做了什么，有何特性却只有一层朦胧的概念，了解的却很抽象；任何一个东西的存在，个人觉得都应该从它为什么存在（作用或者意义）以及它是如何实现（原理）来挖掘它内在的性质与原理；今天主要谈谈为什么要有TCP这一层，它到底为我们解决了什么？<h3 id="tcp-传输控制协议-做了什么？"><a href="#tcp-传输控制协议-做了什么？" class="headerlink" title="tcp(传输控制协议)做了什么？"></a>tcp(传输控制协议)做了什么？</h3></li>
+</ul>
+<hr>
+<ul>
+<li>[ ] 说白了，有了tcp协议，它就能保证两台计算机之前数据的可靠传输以及有序的传输；<h3 id="如何保证的？"><a href="#如何保证的？" class="headerlink" title="如何保证的？"></a>如何保证的？</h3></li>
+</ul>
+<hr>
+<ul>
+<li><em>面向连接的通信与保证顺序传输</em></li>
+<li><p>[ ] 首先，我们可以将客户端与服务器通信看作是一个连接或者数据流，我们都知道，IP是基于数据报传输，送达的顺序也是无序的，使用IP协议意味着数据包传递是无序的，这些数据包并不属于任何连接或者数据流，这时候tcp的作用来了，tcp说：那我来把数据整理好，再给你去传输吧，这就是TCP存在的意义。当在tcp连接内进行数据传递时，发送的ip数据包包含了标识该连接以及数据流的顺序信息，假如一条消息分为3个部分，服务器接收了第一部分与第三部分，通过数据信息它可发现还有第二部分未接收，从而等待第二部分数据传入，从而保证数据的完整性；</p>
+</li>
+<li><p><em>面向字节</em></p>
+</li>
+<li><p>[ ] tcp允许数据以ASCII字符（每个字符一个字节）与unicode(每个字符4个字节)进行传输。正是因为如此，使得tcp传输有了一种很好的灵活性；</p>
+</li>
+<li><p><em>可靠性</em></p>
+</li>
+<li><p>[ ] TCP是基于底层不可靠服务，因此，它必须基于确认和超时实现一系列的机制来达到可靠性的要求。当数据发送出去以后，发送方就会等待一个确认消息，如果过了指定的时间还未收到确认消息，发送方就会对数据进行重发，这样的话就有效解决了网络错误以及网络阻塞这样不可预测的情况；</p>
+</li>
+<li><p><em>流控制</em></p>
+</li>
+<li><p>[ ] 场景是，如果一台计算机的传输速度明显大于另一台的速度，这时候tcp会通过流控制来控制两端的平衡</p>
+</li>
+<li><p><em>拥堵控制</em></p>
+</li>
+<li>[ ] 和流控制机制一样能够避免发送方压垮接收方，tcp会控制数据包传输速率来避免拥堵的情况；</li>
+</ul>
+<p>这就是tcp在传输过程中所做的事情，所谓的传输控制就是上述的内容，也就是tcp存在的意义所在,IP协议主要解决网络路由和寻址问题，TCP协议主要解决如何在IP层之上可靠的传递数据包。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">tcp</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">励志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感悟</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">协议</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/随笔/" class="article-tag-list-link color3">随笔</a>
+        			<a href="/categories/解决方案/" class="article-tag-list-link color5">解决方案</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/06/02/tcp协议/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/06/23/mockjs使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mock.js简单介绍</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
   
 
-    
+  
+    <section id="comments">
+        <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+        <script>
+          var cloudTieConfig = {
+            url: document.location.href,
+            sourceId: "",
+            productKey: "14f5ab11ddea447b822e1599763e46d7",
+            target: "cloud-tie-wrapper"
+          };
+        </script>
+        <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </section>
+  
+
+  
+
+  
 
 
           </div>
@@ -282,10 +422,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
